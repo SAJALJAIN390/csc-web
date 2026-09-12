@@ -1,0 +1,215 @@
+/* Virtual Research Lab — standalone styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.vrl-page {
+  --vrl-bg: #060d1a;
+  --vrl-surface: #0a1628;
+  --vrl-border: rgba(0, 212, 255, 0.12);
+  --vrl-text: #e2e8f0;
+  --vrl-text-muted: #64748b;
+  --vrl-neon-blue: #00D4FF;
+  --vrl-neon-purple: #7B61FF;
+  --vrl-neon-green: #00FFA3;
+
+  background: var(--vrl-bg);
+  color: var(--vrl-text);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+.vrl-page *,
+.vrl-page *::before,
+.vrl-page *::after {
+  box-sizing: border-box;
+}
+
+.vrl-scope * {
+  margin: revert;
+  padding: revert;
+}
+
+/* Font utilities */
+.vrl-page .font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.vrl-page .font-display {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.vrl-page .font-body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Section heading */
+.vrl-page .section-heading {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+/* Grid overlay */
+.vrl-page .grid-overlay {
+  position: relative;
+}
+.vrl-page .grid-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glassmorphism panels */
+.vrl-page .glass-panel {
+  background: rgba(10, 22, 40, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--vrl-border);
+  border-radius: 12px;
+}
+
+.vrl-page .glass-panel-hover {
+  background: rgba(10, 22, 40, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--vrl-border);
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.vrl-page .glass-panel-hover:hover {
+  background: rgba(10, 22, 40, 0.85);
+  border-color: rgba(0, 212, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+/* Gradient border effect */
+.vrl-page .gradient-border {
+  position: relative;
+}
+.vrl-page .gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 40%, rgba(0, 212, 255, 0.2), rgba(123, 97, 255, 0.2), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.vrl-page .gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Neon glow */
+.vrl-page .neon-glow-blue {
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 40px rgba(0, 212, 255, 0.1);
+}
+
+/* Buttons */
+.vrl-page .btn-neon-solid {
+  padding: 0.75rem 1.75rem;
+  background: var(--vrl-neon-blue);
+  color: #060d1a;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+.vrl-page .btn-neon-solid:hover {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.vrl-page .btn-neon {
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: var(--vrl-neon-blue);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.vrl-page .btn-neon:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--vrl-neon-blue);
+}
+
+/* Scan line animation */
+@keyframes scanLine {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(450px); }
+}
+.vrl-page .animate-scan-line {
+  animation: scanLine 4s linear infinite;
+}
+
+/* Particle container */
+.vrl-page .particle-grid-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Pipeline */
+.vrl-page .pipeline-node {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.vrl-page .pipeline-node:hover {
+  transform: scale(1.05);
+}
+.vrl-page .pipeline-connector {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--vrl-neon-blue), var(--vrl-neon-purple));
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* Text colors mapped to tailwind neon classes */
+.vrl-page .text-foreground { color: var(--vrl-text); }
+.vrl-page .text-muted-foreground { color: var(--vrl-text-muted); }
+.vrl-page .text-primary { color: var(--vrl-neon-blue); }
+.vrl-page .text-neon-blue { color: var(--vrl-neon-blue); }
+.vrl-page .text-neon-purple { color: var(--vrl-neon-purple); }
+.vrl-page .text-neon-green { color: var(--vrl-neon-green); }
+.vrl-page .text-destructive { color: #ff4444; }
+.vrl-page .bg-neon-blue { background-color: var(--vrl-neon-blue); }
+.vrl-page .bg-neon-purple { background-color: var(--vrl-neon-purple); }
+.vrl-page .bg-neon-green { background-color: var(--vrl-neon-green); }
+.vrl-page .border-border { border-color: var(--vrl-border); }
+.vrl-page .bg-muted { background-color: rgba(100, 116, 139, 0.2); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vrl-page .section-heading {
+    font-size: 1.5rem;
+  }
+}
